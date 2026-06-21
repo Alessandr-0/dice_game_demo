@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://dawa05osf3h4v"]
+
+[ext_resource type="Script" uid="uid://cls60pg4ariqm" path="res://scripts/dice_roll.gd" id="1_ejwej"]
+
+[sub_resource type="Shader" id="Shader_3vpph"]
+code = "// Original from Snowlith, https://godotshaders.com/shader/analytical-die-dice-texture/
+
+shader_type canvas_item;
+
+uniform int value: hint_range(1, 6, 1) = 1;
+
+void fragment() {
+	vec2 uv = UV * 3.0;
+	float d = distance(ceil(uv) - 0.5, uv) - 0.45;
+	float m = smoothstep(fwidth(d), 0.0, d);
+	int c = abs(int(floor(uv.y) * 3.0 + floor(uv.x)) - 4);
+	
+	m *= float(c != 3);
+	m *= float(c != 2 || value >= 2);
+	m *= float(c != 4 || value >= 4);
+	m *= float(c != 1 || value >= 6);
+	m *= float(c != 0 || value % 2 == 1);
+	
+	COLOR.rgb = vec3(1.0 - m);
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y4uv0"]
+resource_local_to_scene = true
+shader = SubResource("Shader_3vpph")
+shader_parameter/value = 6
+
+[node name="Dice" type="Control" unique_id=2027024641]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ejwej")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1427321124]
+material = SubResource("ShaderMaterial_y4uv0")
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+offset_transform_enabled = true

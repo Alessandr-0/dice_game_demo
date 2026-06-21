@@ -1,0 +1,257 @@
+[gd_scene format=3 uid="uid://cwmyo4dwo67po"]
+
+[ext_resource type="Script" uid="uid://4uanfshhucxj" path="res://scripts/play_tester.gd" id="1_3hfy5"]
+[ext_resource type="Texture2D" uid="uid://c6m8x007dd73p" path="res://assets/textures/base_leather.jpg" id="1_lrqlo"]
+[ext_resource type="PackedScene" uid="uid://dawa05osf3h4v" path="res://scenes/d_6.tscn" id="1_twpsu"]
+[ext_resource type="Texture2D" uid="uid://dwdtvftxxsfga" path="res://icon.svg" id="2_lrqlo"]
+[ext_resource type="Script" uid="uid://da6xbaqhntxp8" path="res://scripts/game_master.gd" id="2_sqa0i"]
+[ext_resource type="Texture2D" uid="uid://3nwc568p03lg" path="res://assets/textures/A-series-of-photographs-rider.jpg" id="4_jh1ax"]
+[ext_resource type="Shader" uid="uid://bjbyh7xehoauq" path="res://assets/shaders/flipbook.gdshader" id="4_kycxp"]
+[ext_resource type="Script" uid="uid://w8s65paadagr" path="res://scripts/button_juice.gd" id="5_jh1ax"]
+[ext_resource type="Script" uid="uid://g2d3lbd54lj1" path="res://scripts/screen_shaker2D.gd" id="9_7pvxh"]
+[ext_resource type="Shader" uid="uid://d3jlfohed1g1o" path="res://assets/shaders/confetti.gdshader" id="10_7pvxh"]
+[ext_resource type="Script" uid="uid://cu67neq4b26hx" path="res://scripts/audio_manager.gd" id="11_f3p2p"]
+[ext_resource type="AudioStream" uid="uid://5ln3nsg32jem" path="res://assets/sounds/dice/dice-shake-1.ogg" id="12_ccljq"]
+[ext_resource type="AudioStream" uid="uid://8xd7hcwtkxft" path="res://assets/sounds/buttons/switch35.ogg" id="12_jehah"]
+[ext_resource type="AudioStream" uid="uid://bhvgwadg2ews0" path="res://assets/sounds/buttons/switch36.ogg" id="13_e2w8j"]
+[ext_resource type="AudioStream" uid="uid://co10ekmevhq25" path="res://assets/sounds/dice/dice-shake-2.ogg" id="13_jehah"]
+[ext_resource type="AudioStream" uid="uid://3bqnah6udon4" path="res://assets/sounds/dice/dice-shake-3.ogg" id="14_e2w8j"]
+[ext_resource type="AudioStream" uid="uid://b7g65f28ed6h" path="res://assets/sounds/dice/dice-throw-1.ogg" id="15_re66h"]
+[ext_resource type="AudioStream" uid="uid://whxrhwpvbq3v" path="res://assets/sounds/dice/dice-throw-2.ogg" id="16_isfgf"]
+[ext_resource type="AudioStream" uid="uid://pim4mgc6d0yp" path="res://assets/sounds/dice/dice-throw-3.ogg" id="17_ihmk7"]
+[ext_resource type="AudioStream" uid="uid://defxskuhkch45" path="res://assets/sounds/dice/die-throw-1.ogg" id="18_phl1g"]
+[ext_resource type="AudioStream" uid="uid://dojycd44ud0p5" path="res://assets/sounds/dice/die-throw-2.ogg" id="19_58tnd"]
+[ext_resource type="AudioStream" uid="uid://b4vjvsk14xvd1" path="res://assets/sounds/dice/die-throw-3.ogg" id="20_e6w1q"]
+[ext_resource type="AudioStream" uid="uid://cv1y6hh1v53px" path="res://assets/sounds/dice/die-throw-4.ogg" id="21_jn22m"]
+[ext_resource type="AudioStream" uid="uid://cq60oj8f7087j" path="res://assets/sounds/dice/dice-grab-1.ogg" id="22_8yue3"]
+[ext_resource type="AudioStream" uid="uid://84vt5svs74fn" path="res://assets/sounds/dice/dice-grab-2.ogg" id="23_agklt"]
+[ext_resource type="AudioStream" uid="uid://bg2vnqt20r5x" path="res://assets/sounds/minimize_006.ogg" id="26_e2w8j"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_y4uv0"]
+size = Vector2(200, 200)
+orientation = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kycxp"]
+shader = ExtResource("4_kycxp")
+shader_parameter/time_factor = 0.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y4uv0"]
+shader = ExtResource("10_7pvxh")
+shader_parameter/speed = 120.0
+shader_parameter/sway_strength = 100.00000475
+shader_parameter/sway_speed = 1.4
+shader_parameter/spin_speed = 7.50000035625
+shader_parameter/piece_size = 8.000000284999999
+shader_parameter/aspect_ratio = 2.0
+shader_parameter/resolution = Vector2(1024, 512)
+shader_parameter/col0 = Color(1, 0.2, 0.2, 1)
+shader_parameter/col1 = Color(1, 0.75, 0.1, 1)
+shader_parameter/col2 = Color(0.1, 0.8, 0.3, 1)
+shader_parameter/col3 = Color(0.15, 0.55, 1, 1)
+shader_parameter/col4 = Color(0.85, 0.2, 1, 1)
+shader_parameter/col5 = Color(1, 0.4, 0.7, 1)
+shader_parameter/col6 = Color(0.1, 0.9, 0.95, 1)
+shader_parameter/col7 = Color(1, 1, 1, 1)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2is5d"]
+streams_count = 2
+stream_0/stream = ExtResource("12_jehah")
+stream_1/stream = ExtResource("13_e2w8j")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_v1w0g"]
+streams_count = 3
+stream_0/stream = ExtResource("12_ccljq")
+stream_1/stream = ExtResource("13_jehah")
+stream_2/stream = ExtResource("14_e2w8j")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_y4uv0"]
+streams_count = 3
+stream_0/stream = ExtResource("15_re66h")
+stream_1/stream = ExtResource("16_isfgf")
+stream_2/stream = ExtResource("17_ihmk7")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3htdx"]
+streams_count = 4
+stream_0/stream = ExtResource("18_phl1g")
+stream_1/stream = ExtResource("19_58tnd")
+stream_2/stream = ExtResource("20_e6w1q")
+stream_3/stream = ExtResource("21_jn22m")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_jkm4e"]
+streams_count = 2
+stream_0/stream = ExtResource("22_8yue3")
+stream_1/stream = ExtResource("23_agklt")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_k8gkg"]
+streams_count = 1
+stream_0/stream = ExtResource("26_e2w8j")
+
+[node name="Root" type="Control" unique_id=1285987883]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3hfy5")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=174149241]
+position = Vector2(539.5, 262)
+scale = Vector2(5.9850006, 3.1099997)
+mesh = SubResource("PlaneMesh_y4uv0")
+texture = ExtResource("1_lrqlo")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=908298294]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1684713577]
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="Row_1" type="HBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=1977401854]
+layout_mode = 2
+theme_override_constants/separation = 180
+
+[node name="dice1" parent="CenterContainer/VBoxContainer/Row_1" unique_id=2027024641 instance=ExtResource("1_twpsu")]
+layout_mode = 2
+current_dice_result = 2
+
+[node name="dice2" parent="CenterContainer/VBoxContainer/Row_1" unique_id=622073147 instance=ExtResource("1_twpsu")]
+layout_mode = 2
+current_dice_result = 2
+
+[node name="dice3" parent="CenterContainer/VBoxContainer/Row_1" unique_id=1588113440 instance=ExtResource("1_twpsu")]
+layout_mode = 2
+current_dice_result = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/Row_1" unique_id=1801490196]
+layout_mode = 2
+
+[node name="ButtonPlayer" type="Button" parent="CenterContainer/VBoxContainer/Row_1/VBoxContainer" unique_id=1492772804]
+layout_mode = 2
+icon = ExtResource("2_lrqlo")
+flat = true
+script = ExtResource("5_jh1ax")
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/Row_1/VBoxContainer" unique_id=260295766]
+layout_mode = 2
+text = "player (button)"
+horizontal_alignment = 1
+
+[node name="Row_2" type="HBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=17593299]
+layout_mode = 2
+theme_override_constants/separation = 180
+
+[node name="dice4" parent="CenterContainer/VBoxContainer/Row_2" unique_id=1215050839 instance=ExtResource("1_twpsu")]
+layout_mode = 2
+current_dice_result = 2
+
+[node name="dice5" parent="CenterContainer/VBoxContainer/Row_2" unique_id=656347977 instance=ExtResource("1_twpsu")]
+layout_mode = 2
+current_dice_result = 2
+
+[node name="dice6" parent="CenterContainer/VBoxContainer/Row_2" unique_id=306961036 instance=ExtResource("1_twpsu")]
+layout_mode = 2
+current_dice_result = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer/VBoxContainer/Row_2" unique_id=1002493943]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/Row_2/PanelContainer" unique_id=349213586]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CenterContainer/VBoxContainer/Row_2/PanelContainer/VBoxContainer" unique_id=1076714030]
+layout_mode = 2
+
+[node name="SubViewport" type="SubViewport" parent="CenterContainer/VBoxContainer/Row_2/PanelContainer/VBoxContainer/SubViewportContainer" unique_id=584632080]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(128, 128)
+render_target_update_mode = 4
+
+[node name="Camera2D" type="Camera2D" parent="CenterContainer/VBoxContainer/Row_2/PanelContainer/VBoxContainer/SubViewportContainer/SubViewport" unique_id=1890469854]
+position = Vector2(64, 64)
+
+[node name="Sprite2D" type="Sprite2D" parent="CenterContainer/VBoxContainer/Row_2/PanelContainer/VBoxContainer/SubViewportContainer/SubViewport" unique_id=371604313]
+material = SubResource("ShaderMaterial_kycxp")
+position = Vector2(64, 64)
+scale = Vector2(0.2, 0.245)
+texture = ExtResource("4_jh1ax")
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/Row_2/PanelContainer/VBoxContainer" unique_id=1247427871]
+layout_mode = 2
+text = "enemy"
+horizontal_alignment = 1
+
+[node name="GameMaster" type="Node" parent="." unique_id=674692258 node_paths=PackedStringArray("dice_1", "dice_2", "dice_3", "dice_4", "dice_5", "dice_6", "confetti")]
+script = ExtResource("2_sqa0i")
+dice_1 = NodePath("../CenterContainer/VBoxContainer/Row_1/dice1")
+dice_2 = NodePath("../CenterContainer/VBoxContainer/Row_1/dice2")
+dice_3 = NodePath("../CenterContainer/VBoxContainer/Row_1/dice3")
+dice_4 = NodePath("../CenterContainer/VBoxContainer/Row_2/dice4")
+dice_5 = NodePath("../CenterContainer/VBoxContainer/Row_2/dice5")
+dice_6 = NodePath("../CenterContainer/VBoxContainer/Row_2/dice6")
+confetti = NodePath("../Confetti")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1008272714]
+offset = Vector2(512, 256)
+script = ExtResource("9_7pvxh")
+
+[node name="Confetti" type="CanvasLayer" parent="." unique_id=2056929197]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="Confetti" unique_id=2142340151]
+material = SubResource("ShaderMaterial_y4uv0")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AudioManager" type="Node" parent="." unique_id=1534627873 node_paths=PackedStringArray("button_presses", "dice_shaking", "dice_rolling", "die_rolling", "dice_pick_up", "minimize")]
+script = ExtResource("11_f3p2p")
+button_presses = NodePath("ButtonPresses")
+dice_shaking = NodePath("DiceShaking")
+dice_rolling = NodePath("DiceRolling")
+die_rolling = NodePath("DieRolling")
+dice_pick_up = NodePath("DicePickUp")
+minimize = NodePath("Minimize")
+
+[node name="ButtonPresses" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=798227771]
+stream = SubResource("AudioStreamRandomizer_2is5d")
+
+[node name="DiceShaking" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=71487017]
+stream = SubResource("AudioStreamRandomizer_v1w0g")
+
+[node name="DiceRolling" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=1699258488]
+stream = SubResource("AudioStreamRandomizer_y4uv0")
+
+[node name="DieRolling" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=572247888]
+stream = SubResource("AudioStreamRandomizer_3htdx")
+
+[node name="DicePickUp" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=1515858602]
+stream = SubResource("AudioStreamRandomizer_jkm4e")
+
+[node name="Minimize" type="AudioStreamPlayer" parent="AudioManager" unique_id=428758655]
+stream = SubResource("AudioStreamRandomizer_k8gkg")
+
+[node name="ScreenHints" type="CanvasLayer" parent="." unique_id=2049946003]
+layer = 2
+
+[node name="Label" type="Label" parent="ScreenHints" unique_id=1614582093]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "1-6: dice sounds
+C: Confetti
+S: Shake Camera
+Esc: Quit
+"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Row_1/VBoxContainer/ButtonPlayer" to="GameMaster" method="_on_button_player_pressed"]

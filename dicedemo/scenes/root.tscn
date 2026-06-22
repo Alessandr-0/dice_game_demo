@@ -26,6 +26,12 @@
 [ext_resource type="AudioStream" uid="uid://cq60oj8f7087j" path="res://assets/sounds/dice/dice-grab-1.ogg" id="22_8yue3"]
 [ext_resource type="AudioStream" uid="uid://84vt5svs74fn" path="res://assets/sounds/dice/dice-grab-2.ogg" id="23_agklt"]
 [ext_resource type="AudioStream" uid="uid://bg2vnqt20r5x" path="res://assets/sounds/minimize_006.ogg" id="26_e2w8j"]
+[ext_resource type="AudioStream" uid="uid://cciwmevubc8t7" path="res://assets/sounds/exclamations/EXCLAMATION_Male_B_Yehey_mono.wav" id="26_isfgf"]
+[ext_resource type="AudioStream" uid="uid://cvon44fa86ij7" path="res://assets/sounds/exclamations/EXCLAMATION_Male_B_Yehoo_01_mono.wav" id="27_ihmk7"]
+[ext_resource type="AudioStream" uid="uid://be6c8dnt08aha" path="res://assets/sounds/enemy/ANIMAL_Horse_Snort_01_Dry_mono.wav" id="28_e6w1q"]
+[ext_resource type="AudioStream" uid="uid://bce0d30e4do3n" path="res://assets/sounds/enemy/ANIMAL_Horse_Snort_02_Dry_mono.wav" id="29_jn22m"]
+[ext_resource type="AudioStream" uid="uid://drl1fcl5c6b1g" path="res://assets/sounds/enemy/ANIMAL_Horse_Snort_03_Dry_mono.wav" id="30_8yue3"]
+[ext_resource type="AudioStream" uid="uid://byycngsklsnkh" path="res://assets/sounds/enemy/ANIMAL_Horse_Snort_04_Dry_mono.wav" id="31_agklt"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_y4uv0"]
 size = Vector2(200, 200)
@@ -81,6 +87,18 @@ stream_3/stream = ExtResource("21_jn22m")
 streams_count = 2
 stream_0/stream = ExtResource("22_8yue3")
 stream_1/stream = ExtResource("23_agklt")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_g3h64"]
+streams_count = 2
+stream_0/stream = ExtResource("26_isfgf")
+stream_1/stream = ExtResource("27_ihmk7")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_isfgf"]
+streams_count = 4
+stream_0/stream = ExtResource("28_e6w1q")
+stream_1/stream = ExtResource("29_jn22m")
+stream_2/stream = ExtResource("30_8yue3")
+stream_3/stream = ExtResource("31_agklt")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_k8gkg"]
 streams_count = 1
@@ -209,13 +227,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="AudioManager" type="Node" parent="." unique_id=1534627873 node_paths=PackedStringArray("button_presses", "dice_shaking", "dice_rolling", "die_rolling", "dice_pick_up", "minimize")]
+[node name="AudioManager" type="Node" parent="." unique_id=1534627873 node_paths=PackedStringArray("button_presses", "dice_shaking", "dice_rolling", "die_rolling", "dice_pick_up", "exclamation", "enemy", "minimize")]
 script = ExtResource("11_f3p2p")
 button_presses = NodePath("ButtonPresses")
 dice_shaking = NodePath("DiceShaking")
 dice_rolling = NodePath("DiceRolling")
 die_rolling = NodePath("DieRolling")
 dice_pick_up = NodePath("DicePickUp")
+exclamation = NodePath("Exclamation")
+enemy = NodePath("Enemy")
 minimize = NodePath("Minimize")
 
 [node name="ButtonPresses" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=798227771]
@@ -232,6 +252,12 @@ stream = SubResource("AudioStreamRandomizer_3htdx")
 
 [node name="DicePickUp" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=1515858602]
 stream = SubResource("AudioStreamRandomizer_jkm4e")
+
+[node name="Exclamation" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=1938355665]
+stream = SubResource("AudioStreamRandomizer_g3h64")
+
+[node name="Enemy" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=1038520442]
+stream = SubResource("AudioStreamRandomizer_isfgf")
 
 [node name="Minimize" type="AudioStreamPlayer" parent="AudioManager" unique_id=428758655]
 stream = SubResource("AudioStreamRandomizer_k8gkg")

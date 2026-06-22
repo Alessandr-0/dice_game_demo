@@ -5,7 +5,10 @@ extends Node
 @export var dice_rolling: AudioStreamPlayer2D
 @export var die_rolling: AudioStreamPlayer2D
 @export var dice_pick_up: AudioStreamPlayer2D
+@export var exclamation: AudioStreamPlayer2D
+@export var enemy: AudioStreamPlayer2D
 @export var minimize: AudioStreamPlayer
+
 
 
 func _ready() -> void:
@@ -15,6 +18,8 @@ func _ready() -> void:
 	SignalBus.connect("si_dice_rolled", _dice_roller)
 	SignalBus.connect("si_die_rolled", _die_roller)
 	SignalBus.connect("si_dice_picked_up", _dice_picking_up)
+	SignalBus.connect("si_player_won", _player_won)
+	SignalBus.connect("si_player_lost", _player_lost)
 
 
 ## TESTING: Use keyboard input only for playtesting and debugging
@@ -57,6 +62,18 @@ func _die_roller() -> void:
 func _dice_picking_up() -> void:
 	if not dice_pick_up.playing:
 		dice_pick_up.play()
+	else:
+		pass
+
+func _player_won() -> void:
+	if not exclamation.playing:
+		exclamation.play()
+	else:
+		pass
+
+func _player_lost() -> void:
+	if not enemy.playing:
+		enemy.play()
 	else:
 		pass
 

@@ -134,8 +134,10 @@ func _comparing_values_and_scoring():
 	print("enemy wins: ", enemy_total_wins)
 	if player_total_wins > enemy_total_wins:
 		_confetti()
+		SignalBus.si_player_won.emit()
 	elif enemy_total_wins > player_total_wins:
 		camera_effect(3, 10)
+		SignalBus.si_player_lost.emit()
 	else:
 		print("nope")
 		pass

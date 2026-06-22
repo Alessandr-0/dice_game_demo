@@ -9,6 +9,8 @@ signal si_dice_rolled
 signal si_die_rolled
 signal si_dice_picked_up
 signal si_player_button_was_pressed
+signal si_player_won
+signal si_player_lost
 
 #signal console_height(value: float)
 #signal final_single_button_pressed(message: String)

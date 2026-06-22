@@ -1,6 +1,6 @@
 extends Control
 
-@export var current_dice_result: int = 1
+@export var dice_result: int = 1
 
 var mat
 var random_value
@@ -13,7 +13,7 @@ func _ready() -> void:
 	SignalBus.connect("si_dice_rolled", _dice_roll)
 
 func _process(_delta) -> void:
-	mat.set_shader_parameter("value", current_dice_result)
+	mat.set_shader_parameter("value", dice_result)
 
 
 ## TESTING: Use keyboard input only for playtesting and debugging
@@ -27,7 +27,7 @@ func _dice_roll() -> void:
 	randomize()
 	random_value = randi_range(1,6)
 	await get_tree().create_timer(0.5).timeout
-	current_dice_result = random_value
+	dice_result = random_value
 	_rotate_dice()
 
 

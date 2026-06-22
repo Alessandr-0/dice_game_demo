@@ -9,9 +9,9 @@ var tweeny: Tween
 
 
 func _ready() -> void:
-	# set pivot to bottom center
-	# TODO: uitzoeken hoe die offset werkt
-	pivot_offset = size + Vector2(0.5, 1.0)
+	# set pivot to middle (Godot 4.7!)
+	offset_transform_enabled = true
+	pivot_offset_ratio = Vector2(0.5, 0.5)
 	
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
@@ -34,7 +34,7 @@ func _on_mouse_exited():
 func _on_button_down():
 	# kill the tween to prevent bugs
 	if tweeny: tweeny.kill()
-	scale = Vector2(0.9, 0.7)
+	scale = Vector2(0.8, 0.8)
 	SignalBus.si_any_button_was_pressed.emit()
 
 # When the butten isn't pressed anymore

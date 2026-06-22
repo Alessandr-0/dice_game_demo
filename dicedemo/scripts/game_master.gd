@@ -9,7 +9,8 @@ extends Node
 @export var dice_6: Control
 @export var confetti: CanvasLayer
 
-var my_defined_array: Array
+var player_array: Array[int]
+var enemy_array: Array[int]
 var my_collected_array: Array
 var my_sorted_array: Array
 
@@ -28,9 +29,11 @@ func _on_button_player_pressed() -> void:
 ## TESTING: Use keyboard input only for playtesting and debugging
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("test_d"):
-		_define_arrays()
+		_fill_player_array()
+		_fill_enemy_array()
 	if Input.is_action_just_pressed("test_s"):
-		camera_effect(2.0, 5.0)
+		camera_effect(1.0, 2.0)
+		_comparing_values_and_scoring()
 	if Input.is_action_just_pressed("test_c"):
 		if not confetti.visible:
 			_confetti()
@@ -42,29 +45,100 @@ func _input(_event: InputEvent) -> void:
 		get_tree().quit.call_deferred()
 
 
-## TODO: deze moet dus een arg uitspuwen dus niet void
-func _define_arrays() -> Array:
-	my_defined_array = [1,2,3]
-	print(my_defined_array)
-	_collecting_values()
-	return my_defined_array
+## CAUTION: als het maar werkt voor nu
+func _fill_player_array() -> Array:
+	player_array = [dice_1.dice_result,dice_2.dice_result,dice_3.dice_result]
+	print("unsorted P: ", player_array)
+	_sort_player_array()
+	return player_array
+
+func _fill_enemy_array() -> Array:
+	enemy_array = [dice_4.dice_result,dice_5.dice_result,dice_6.dice_result]
+	print("unsorted E: ", enemy_array)
+	_sort_enemy_array()
+	return enemy_array
 
 
-func _collecting_values() -> Array:
-	my_collected_array = my_defined_array + [4,5,4]
-	print(my_collected_array)
-	_sorting_values()
-	return my_collected_array
+func _sort_player_array() -> Array:
+	player_array.sort()
+	print("sorted P: ", player_array)
+	var p1 = player_array.get(0)
+	var p2 = player_array.get(1)
+	var p3 = player_array.get(2)
+	dice_1.dice_result = p1
+	dice_2.dice_result = p2
+	dice_3.dice_result = p3
+	return player_array
 
-
-func _sorting_values() -> Array:
-	my_sorted_array = my_collected_array + [3,2,1]
-	print(my_sorted_array)
-	return my_sorted_array
+func _sort_enemy_array() -> Array:
+	enemy_array.sort()
+	print("sorted E: ", enemy_array)
+	var e1 = enemy_array.get(0)
+	var e2 = enemy_array.get(1)
+	var e3 = enemy_array.get(2)
+	dice_4.dice_result = e1
+	dice_5.dice_result = e2
+	dice_6.dice_result = e3
+	return enemy_array
 
 
 func _comparing_values_and_scoring():
-	pass
+	var player_1 = player_array.get(0)
+	print("p#1 ", player_1)
+	var player_2 = player_array.get(1)
+	print("p#2 ", player_2)
+	var player_3 = player_array.get(2)
+	print("p#3 ", player_3)
+	var enemy_1 = enemy_array.get(0)
+	print("e#1 ", enemy_1)
+	var enemy_2 = enemy_array.get(1)
+	print("e#2 ", enemy_2)
+	var enemy_3 = enemy_array.get(2)
+	print("e#3 ", enemy_3)
+	var player_total_wins: int = 0
+	var enemy_total_wins: int = 0
+	if player_1 > enemy_1:
+		print("player 1 win")
+		player_total_wins += 1
+	elif player_1 < enemy_1:
+		print("enemy 1 win")
+		enemy_total_wins += 1
+	elif player_1 == enemy_1:
+		print("stalemate")
+	else:
+		print("wut??? (1)")
+	
+	if player_2 > enemy_2:
+		print("player 2 win")
+		player_total_wins += 1
+	elif player_2 < enemy_2:
+		print("enemy 2 win")
+		enemy_total_wins += 1
+	elif player_2 == enemy_2:
+		print("stalemate")
+	else:
+		print("wut??? (2)")
+	
+	if player_3 > enemy_3:
+		print("player 3 win")
+		player_total_wins += 1
+	elif player_3 < enemy_3:
+		print("enemy 3 win")
+		enemy_total_wins += 1
+	elif player_3 == enemy_3:
+		print("stalemate")
+	else:
+		print("wut??? (3)")
+	
+	print("player wins: ", player_total_wins)
+	print("enemy wins: ", enemy_total_wins)
+	if player_total_wins > enemy_total_wins:
+		_confetti()
+	elif enemy_total_wins > player_total_wins:
+		camera_effect(3, 10)
+	else:
+		print("nope")
+		pass
 
 
 func _confetti() -> void:

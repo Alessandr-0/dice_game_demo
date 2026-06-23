@@ -11,6 +11,7 @@ var random_rotate
 func _ready() -> void:
 	mat = color_rect.material as ShaderMaterial
 	SignalBus.connect("si_dice_rolled", _dice_roll)
+	SignalBus.connect("si_dice_picked_up", _straighten_dice)
 
 func _process(_delta) -> void:
 	mat.set_shader_parameter("value", dice_result)
@@ -38,3 +39,9 @@ func _rotate_dice() -> void:
 		color_rect.offset_transform_rotation += deg_to_rad(90)
 	else:
 		pass
+	randomize()
+	random_rotate = randi_range(-35,35)
+	color_rect.offset_transform_rotation += deg_to_rad(random_rotate)
+
+func _straighten_dice() -> void:
+	color_rect.offset_transform_rotation -= deg_to_rad(random_rotate)

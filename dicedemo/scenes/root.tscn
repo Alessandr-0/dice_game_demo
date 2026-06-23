@@ -27,6 +27,7 @@
 [ext_resource type="AudioStream" uid="uid://84vt5svs74fn" path="res://assets/sounds/dice/dice-grab-2.ogg" id="23_agklt"]
 [ext_resource type="AudioStream" uid="uid://bg2vnqt20r5x" path="res://assets/sounds/minimize_006.ogg" id="26_e2w8j"]
 [ext_resource type="AudioStream" uid="uid://cciwmevubc8t7" path="res://assets/sounds/exclamations/EXCLAMATION_Male_B_Yehey_mono.wav" id="26_isfgf"]
+[ext_resource type="AudioStream" uid="uid://2aymre4eqlsn" path="res://assets/sounds/exclamations/VOICE_MALE_Ahh_1_Subtle_mono.wav" id="26_jn22m"]
 [ext_resource type="AudioStream" uid="uid://cvon44fa86ij7" path="res://assets/sounds/exclamations/EXCLAMATION_Male_B_Yehoo_01_mono.wav" id="27_ihmk7"]
 [ext_resource type="AudioStream" uid="uid://be6c8dnt08aha" path="res://assets/sounds/enemy/ANIMAL_Horse_Snort_01_Dry_mono.wav" id="28_e6w1q"]
 [ext_resource type="AudioStream" uid="uid://bce0d30e4do3n" path="res://assets/sounds/enemy/ANIMAL_Horse_Snort_02_Dry_mono.wav" id="29_jn22m"]
@@ -40,6 +41,126 @@ orientation = 2
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kycxp"]
 shader = ExtResource("4_kycxp")
 shader_parameter/time_factor = 0.5
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_58tnd"]
+atlas = ExtResource("4_jh1ax")
+region = Rect2(0, 0, 164, 127)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6w1q"]
+atlas = ExtResource("4_jh1ax")
+region = Rect2(164, 0, 164, 127)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jn22m"]
+atlas = ExtResource("4_jh1ax")
+region = Rect2(328, 0, 164, 127)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8yue3"]
+atlas = ExtResource("4_jh1ax")
+region = Rect2(492, 0, 164, 127)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_agklt"]
+atlas = ExtResource("4_jh1ax")
+region = Rect2(0, 127, 164, 127)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7ldt"]
+atlas = ExtResource("4_jh1ax")
+region = Rect2(164, 127, 164, 127)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_moyyc"]
+atlas = ExtResource("4_jh1ax")
+region = Rect2(328, 127, 164, 127)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f0nuf"]
+atlas = ExtResource("4_jh1ax")
+region = Rect2(492, 127, 164, 127)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ixqlv"]
+atlas = ExtResource("4_jh1ax")
+region = Rect2(0, 254, 164, 127)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p6fp0"]
+atlas = ExtResource("4_jh1ax")
+region = Rect2(164, 254, 164, 127)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_55oir"]
+atlas = ExtResource("4_jh1ax")
+region = Rect2(328, 254, 164, 127)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ltgni"]
+atlas = ExtResource("4_jh1ax")
+region = Rect2(492, 254, 164, 127)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yg167"]
+atlas = ExtResource("4_jh1ax")
+region = Rect2(0, 381, 164, 127)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8e7ao"]
+atlas = ExtResource("4_jh1ax")
+region = Rect2(164, 381, 164, 127)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xkeu2"]
+atlas = ExtResource("4_jh1ax")
+region = Rect2(328, 381, 164, 127)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33j8a"]
+atlas = ExtResource("4_jh1ax")
+region = Rect2(492, 381, 164, 127)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jkm4e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_58tnd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e6w1q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jn22m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8yue3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_agklt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x7ldt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_moyyc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f0nuf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ixqlv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p6fp0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_55oir")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ltgni")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yg167")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8e7ao")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xkeu2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_33j8a")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y4uv0"]
 shader = ExtResource("10_7pvxh")
@@ -202,7 +323,13 @@ layout_mode = 2
 text = "enemy"
 horizontal_alignment = 1
 
-[node name="GameMaster" type="Node" parent="." unique_id=674692258 node_paths=PackedStringArray("dice_1", "dice_2", "dice_3", "dice_4", "dice_5", "dice_6", "confetti")]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CenterContainer/VBoxContainer/Row_2/PanelContainer/VBoxContainer" unique_id=1470528217]
+position = Vector2(396, 75)
+scale = Vector2(0.75609744, 0.94488186)
+sprite_frames = SubResource("SpriteFrames_jkm4e")
+autoplay = "default"
+
+[node name="GameMaster" type="Node" parent="." unique_id=674692258 node_paths=PackedStringArray("dice_1", "dice_2", "dice_3", "dice_4", "dice_5", "dice_6", "confetti", "player_score_label", "enemy_score_label")]
 script = ExtResource("2_sqa0i")
 dice_1 = NodePath("../CenterContainer/VBoxContainer/Row_1/dice1")
 dice_2 = NodePath("../CenterContainer/VBoxContainer/Row_1/dice2")
@@ -211,6 +338,8 @@ dice_4 = NodePath("../CenterContainer/VBoxContainer/Row_2/dice4")
 dice_5 = NodePath("../CenterContainer/VBoxContainer/Row_2/dice5")
 dice_6 = NodePath("../CenterContainer/VBoxContainer/Row_2/dice6")
 confetti = NodePath("../Confetti")
+player_score_label = NodePath("../ScreenHints/PlayerScore")
+enemy_score_label = NodePath("../ScreenHints/EnemyScore")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1008272714]
 offset = Vector2(512, 256)
@@ -227,19 +356,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="AudioManager" type="Node" parent="." unique_id=1534627873 node_paths=PackedStringArray("button_presses", "dice_shaking", "dice_rolling", "die_rolling", "dice_pick_up", "exclamation", "enemy", "minimize")]
+[node name="AudioManager" type="Node2D" parent="." unique_id=1735180059 node_paths=PackedStringArray("button_presses", "dice_shaking", "dice_rolling", "die_rolling", "dice_pick_up", "dissapointed", "exclamation", "enemy", "minimize")]
 script = ExtResource("11_f3p2p")
 button_presses = NodePath("ButtonPresses")
 dice_shaking = NodePath("DiceShaking")
 dice_rolling = NodePath("DiceRolling")
 die_rolling = NodePath("DieRolling")
 dice_pick_up = NodePath("DicePickUp")
+dissapointed = NodePath("Dissapointed")
 exclamation = NodePath("Exclamation")
 enemy = NodePath("Enemy")
 minimize = NodePath("Minimize")
 
 [node name="ButtonPresses" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=798227771]
+position = Vector2(981, 129)
 stream = SubResource("AudioStreamRandomizer_2is5d")
+panning_strength = 2.55
 
 [node name="DiceShaking" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=71487017]
 stream = SubResource("AudioStreamRandomizer_v1w0g")
@@ -253,11 +385,20 @@ stream = SubResource("AudioStreamRandomizer_3htdx")
 [node name="DicePickUp" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=1515858602]
 stream = SubResource("AudioStreamRandomizer_jkm4e")
 
+[node name="Dissapointed" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=546041057]
+position = Vector2(25, 484)
+stream = ExtResource("26_jn22m")
+panning_strength = 2.94
+
 [node name="Exclamation" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=1938355665]
+position = Vector2(8, 471)
 stream = SubResource("AudioStreamRandomizer_g3h64")
+panning_strength = 3.0
 
 [node name="Enemy" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=1038520442]
+position = Vector2(12, 491)
 stream = SubResource("AudioStreamRandomizer_isfgf")
+panning_strength = 2.35
 
 [node name="Minimize" type="AudioStreamPlayer" parent="AudioManager" unique_id=428758655]
 stream = SubResource("AudioStreamRandomizer_k8gkg")
@@ -265,7 +406,7 @@ stream = SubResource("AudioStreamRandomizer_k8gkg")
 [node name="ScreenHints" type="CanvasLayer" parent="." unique_id=2049946003]
 layer = 2
 
-[node name="Label" type="Label" parent="ScreenHints" unique_id=1614582093]
+[node name="Hints" type="Label" parent="ScreenHints" unique_id=1614582093]
 offset_right = 40.0
 offset_bottom = 23.0
 text = "1-6: dice sounds
@@ -273,5 +414,21 @@ C: Confetti
 S: Shake Camera
 Esc: Quit
 "
+
+[node name="PlayerScore" type="Label" parent="ScreenHints" unique_id=1693455903]
+offset_left = 885.0
+offset_top = 61.0
+offset_right = 1012.0
+offset_bottom = 182.0
+theme_override_font_sizes/font_size = 88
+text = "0"
+
+[node name="EnemyScore" type="Label" parent="ScreenHints" unique_id=278760579]
+offset_left = 885.0
+offset_top = 312.0
+offset_right = 986.0
+offset_bottom = 433.0
+theme_override_font_sizes/font_size = 88
+text = "0"
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Row_1/VBoxContainer/ButtonPlayer" to="GameMaster" method="_on_button_player_pressed"]

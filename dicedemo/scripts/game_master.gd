@@ -7,24 +7,38 @@ extends Node
 @export var dice_4: Control
 @export var dice_5: Control
 @export var dice_6: Control
-@export var confetti: CanvasLayer
 
+@export var confetti: CanvasLayer
+@export var player_score_label: Label
+@export var enemy_score_label: Label
+
+
+var dice_can_be_rolled: bool
 var player_array: Array[int]
 var enemy_array: Array[int]
 var my_collected_array: Array
 var my_sorted_array: Array
-
+var player_total_score: int = 0
+var enemy_total_score: int = 0
 
 func _ready() -> void:
 	confetti.visible = false
+	dice_can_be_rolled = true
 
 
 func _on_button_player_pressed() -> void:
-	print("button pressed")
-	SignalBus.si_player_button_was_pressed.emit()
-	await get_tree().create_timer(0.3).timeout
-	SignalBus.si_dice_rolled.emit()
-
+	if dice_can_be_rolled:
+		dice_can_be_rolled = false
+		print("button pressed")
+		SignalBus.si_player_button_was_pressed.emit()
+		await get_tree().create_timer(0.3).timeout
+		SignalBus.si_dice_rolled.emit()
+		await get_tree().create_timer(2.0).timeout
+		SignalBus.si_dice_picked_up.emit()
+		_fill_player_array()
+		_fill_enemy_array()
+		await get_tree().create_timer(2.0).timeout
+		_comparing_values_and_scoring()
 
 ## TESTING: Use keyboard input only for playtesting and debugging
 func _input(_event: InputEvent) -> void:
@@ -84,17 +98,11 @@ func _sort_enemy_array() -> Array:
 
 func _comparing_values_and_scoring():
 	var player_1 = player_array.get(0)
-	print("p#1 ", player_1)
 	var player_2 = player_array.get(1)
-	print("p#2 ", player_2)
 	var player_3 = player_array.get(2)
-	print("p#3 ", player_3)
 	var enemy_1 = enemy_array.get(0)
-	print("e#1 ", enemy_1)
 	var enemy_2 = enemy_array.get(1)
-	print("e#2 ", enemy_2)
 	var enemy_3 = enemy_array.get(2)
-	print("e#3 ", enemy_3)
 	var player_total_wins: int = 0
 	var enemy_total_wins: int = 0
 	if player_1 > enemy_1:
@@ -106,7 +114,7 @@ func _comparing_values_and_scoring():
 	elif player_1 == enemy_1:
 		print("stalemate")
 	else:
-		print("wut??? (1)")
+		print("WUT??? (1)")
 	
 	if player_2 > enemy_2:
 		print("player 2 win")
@@ -135,12 +143,19 @@ func _comparing_values_and_scoring():
 	if player_total_wins > enemy_total_wins:
 		_confetti()
 		SignalBus.si_player_won.emit()
+		player_total_score += 1
+		player_score_label.text = String.num_int64(player_total_score,10, false)
 	elif enemy_total_wins > player_total_wins:
 		camera_effect(3, 10)
 		SignalBus.si_player_lost.emit()
+		enemy_total_score += 1
+		enemy_score_label.text = String.num_int64(enemy_total_score,10, false)
 	else:
+		SignalBus.si_dissapointed.emit()
+		camera_effect(1.0,2.0)
 		print("nope")
 		pass
+	dice_can_be_rolled = true
 
 
 func _confetti() -> void:

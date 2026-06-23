@@ -374,24 +374,28 @@ stream = SubResource("AudioStreamRandomizer_2is5d")
 panning_strength = 2.55
 
 [node name="DiceShaking" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=71487017]
+position = Vector2(465, 257)
 stream = SubResource("AudioStreamRandomizer_v1w0g")
 
 [node name="DiceRolling" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=1699258488]
+position = Vector2(459, 214)
 stream = SubResource("AudioStreamRandomizer_y4uv0")
 
 [node name="DieRolling" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=572247888]
+position = Vector2(394, 194)
 stream = SubResource("AudioStreamRandomizer_3htdx")
 
 [node name="DicePickUp" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=1515858602]
+position = Vector2(422, 232)
 stream = SubResource("AudioStreamRandomizer_jkm4e")
 
 [node name="Dissapointed" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=546041057]
-position = Vector2(25, 484)
+position = Vector2(27, 252)
 stream = ExtResource("26_jn22m")
 panning_strength = 2.94
 
 [node name="Exclamation" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=1938355665]
-position = Vector2(8, 471)
+position = Vector2(32, 106)
 stream = SubResource("AudioStreamRandomizer_g3h64")
 panning_strength = 3.0
 

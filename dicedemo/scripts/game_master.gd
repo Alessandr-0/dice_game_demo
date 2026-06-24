@@ -12,6 +12,7 @@ extends Node
 @export var player_score_label: Label
 @export var enemy_score_label: Label
 
+@export var my_sound_delay: float = 0.3
 
 var dice_can_be_rolled: bool
 var player_array: Array[int]
@@ -20,6 +21,7 @@ var my_collected_array: Array
 var my_sorted_array: Array
 var player_total_score: int = 0
 var enemy_total_score: int = 0
+
 
 func _ready() -> void:
 	confetti.visible = false
@@ -108,35 +110,47 @@ func _comparing_values_and_scoring():
 	if player_1 > enemy_1:
 		print("player 1 win")
 		player_total_wins += 1
+		SignalBus.si_dice_destroyed.emit()
 	elif player_1 < enemy_1:
 		print("enemy 1 win")
 		enemy_total_wins += 1
+		SignalBus.si_dice_destroyed.emit()
 	elif player_1 == enemy_1:
 		print("stalemate")
+		SignalBus.si_dice_survided.emit()
 	else:
 		print("WUT??? (1)")
+	await get_tree().create_timer(my_sound_delay).timeout
 	
 	if player_2 > enemy_2:
 		print("player 2 win")
 		player_total_wins += 1
+		SignalBus.si_dice_destroyed.emit()
 	elif player_2 < enemy_2:
 		print("enemy 2 win")
 		enemy_total_wins += 1
+		SignalBus.si_dice_destroyed.emit()
 	elif player_2 == enemy_2:
 		print("stalemate")
+		SignalBus.si_dice_survided.emit()
 	else:
 		print("wut??? (2)")
+	await get_tree().create_timer(my_sound_delay).timeout
 	
 	if player_3 > enemy_3:
 		print("player 3 win")
 		player_total_wins += 1
+		SignalBus.si_dice_destroyed.emit()
 	elif player_3 < enemy_3:
 		print("enemy 3 win")
 		enemy_total_wins += 1
+		SignalBus.si_dice_destroyed.emit()
 	elif player_3 == enemy_3:
 		print("stalemate")
+		SignalBus.si_dice_survided.emit()
 	else:
 		print("wut??? (3)")
+	await get_tree().create_timer(my_sound_delay).timeout
 	
 	print("player wins: ", player_total_wins)
 	print("enemy wins: ", enemy_total_wins)

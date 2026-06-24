@@ -28,11 +28,18 @@
 [ext_resource type="AudioStream" uid="uid://bg2vnqt20r5x" path="res://assets/sounds/minimize_006.ogg" id="26_e2w8j"]
 [ext_resource type="AudioStream" uid="uid://cciwmevubc8t7" path="res://assets/sounds/exclamations/EXCLAMATION_Male_B_Yehey_mono.wav" id="26_isfgf"]
 [ext_resource type="AudioStream" uid="uid://2aymre4eqlsn" path="res://assets/sounds/exclamations/VOICE_MALE_Ahh_1_Subtle_mono.wav" id="26_jn22m"]
+[ext_resource type="AudioStream" uid="uid://dpl0d0t0ien4x" path="res://assets/sounds/explosions/EXPLOSION_Short_02_mono.wav" id="27_f0nuf"]
 [ext_resource type="AudioStream" uid="uid://cvon44fa86ij7" path="res://assets/sounds/exclamations/EXCLAMATION_Male_B_Yehoo_01_mono.wav" id="27_ihmk7"]
 [ext_resource type="AudioStream" uid="uid://be6c8dnt08aha" path="res://assets/sounds/enemy/ANIMAL_Horse_Snort_01_Dry_mono.wav" id="28_e6w1q"]
+[ext_resource type="AudioStream" uid="uid://doyu1r25sjtkd" path="res://assets/sounds/explosions/EXPLOSION_Short_04_mono.wav" id="28_ixqlv"]
 [ext_resource type="AudioStream" uid="uid://bce0d30e4do3n" path="res://assets/sounds/enemy/ANIMAL_Horse_Snort_02_Dry_mono.wav" id="29_jn22m"]
+[ext_resource type="AudioStream" uid="uid://dqogggydsdttm" path="res://assets/sounds/explosions/EXPLOSION_Short_05_mono.wav" id="29_p6fp0"]
 [ext_resource type="AudioStream" uid="uid://drl1fcl5c6b1g" path="res://assets/sounds/enemy/ANIMAL_Horse_Snort_03_Dry_mono.wav" id="30_8yue3"]
+[ext_resource type="AudioStream" uid="uid://dg1gwdinea5x7" path="res://assets/sounds/explosions/EXPLOSION_Short_07_mono.wav" id="30_55oir"]
 [ext_resource type="AudioStream" uid="uid://byycngsklsnkh" path="res://assets/sounds/enemy/ANIMAL_Horse_Snort_04_Dry_mono.wav" id="31_agklt"]
+[ext_resource type="AudioStream" uid="uid://c2h4acciwpda2" path="res://assets/sounds/explosions/EXPLOSION_Short_09_mono.wav" id="31_ltgni"]
+[ext_resource type="AudioStream" uid="uid://cn4vyjrnu2dek" path="res://assets/sounds/swoosh/WHOOSH_Quick_Darker_mono.wav" id="39_p6fp0"]
+[ext_resource type="AudioStream" uid="uid://dlg3o1f6m87tb" path="res://assets/sounds/swoosh/WHOOSH_Quick_mono.wav" id="40_55oir"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_y4uv0"]
 size = Vector2(200, 200)
@@ -209,6 +216,14 @@ streams_count = 2
 stream_0/stream = ExtResource("22_8yue3")
 stream_1/stream = ExtResource("23_agklt")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2xf8d"]
+streams_count = 5
+stream_0/stream = ExtResource("27_f0nuf")
+stream_1/stream = ExtResource("28_ixqlv")
+stream_2/stream = ExtResource("29_p6fp0")
+stream_3/stream = ExtResource("30_55oir")
+stream_4/stream = ExtResource("31_ltgni")
+
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_g3h64"]
 streams_count = 2
 stream_0/stream = ExtResource("26_isfgf")
@@ -224,6 +239,11 @@ stream_3/stream = ExtResource("31_agklt")
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_k8gkg"]
 streams_count = 1
 stream_0/stream = ExtResource("26_e2w8j")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_5do6s"]
+streams_count = 2
+stream_0/stream = ExtResource("39_p6fp0")
+stream_1/stream = ExtResource("40_55oir")
 
 [node name="Root" type="Control" unique_id=1285987883]
 layout_mode = 3
@@ -254,7 +274,7 @@ theme_override_constants/separation = 100
 
 [node name="Row_1" type="HBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=1977401854]
 layout_mode = 2
-theme_override_constants/separation = 180
+theme_override_constants/separation = 60
 
 [node name="dice1" parent="CenterContainer/VBoxContainer/Row_1" unique_id=2027024641 instance=ExtResource("1_twpsu")]
 layout_mode = 2
@@ -281,7 +301,7 @@ horizontal_alignment = 1
 
 [node name="Row_2" type="HBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=17593299]
 layout_mode = 2
-theme_override_constants/separation = 180
+theme_override_constants/separation = 60
 
 [node name="dice4" parent="CenterContainer/VBoxContainer/Row_2" unique_id=1215050839 instance=ExtResource("1_twpsu")]
 layout_mode = 2
@@ -340,6 +360,7 @@ dice_6 = NodePath("../CenterContainer/VBoxContainer/Row_2/dice6")
 confetti = NodePath("../Confetti")
 player_score_label = NodePath("../ScreenHints/PlayerScore")
 enemy_score_label = NodePath("../ScreenHints/EnemyScore")
+my_sound_delay = 1.2
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1008272714]
 offset = Vector2(512, 256)
@@ -356,7 +377,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="AudioManager" type="Node2D" parent="." unique_id=1735180059 node_paths=PackedStringArray("button_presses", "dice_shaking", "dice_rolling", "die_rolling", "dice_pick_up", "dissapointed", "exclamation", "enemy", "minimize")]
+[node name="AudioManager" type="Node2D" parent="." unique_id=1735180059 node_paths=PackedStringArray("button_presses", "dice_shaking", "dice_rolling", "die_rolling", "dice_pick_up", "dissapointed", "explosions", "exclamation", "enemy", "minimize", "swoosh")]
 script = ExtResource("11_f3p2p")
 button_presses = NodePath("ButtonPresses")
 dice_shaking = NodePath("DiceShaking")
@@ -364,9 +385,11 @@ dice_rolling = NodePath("DiceRolling")
 die_rolling = NodePath("DieRolling")
 dice_pick_up = NodePath("DicePickUp")
 dissapointed = NodePath("Dissapointed")
+explosions = NodePath("Explosions")
 exclamation = NodePath("Exclamation")
 enemy = NodePath("Enemy")
 minimize = NodePath("Minimize")
+swoosh = NodePath("Swoosh")
 
 [node name="ButtonPresses" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=798227771]
 position = Vector2(981, 129)
@@ -394,6 +417,10 @@ position = Vector2(27, 252)
 stream = ExtResource("26_jn22m")
 panning_strength = 2.94
 
+[node name="Explosions" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=913717534]
+position = Vector2(487, 473)
+stream = SubResource("AudioStreamRandomizer_2xf8d")
+
 [node name="Exclamation" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=1938355665]
 position = Vector2(32, 106)
 stream = SubResource("AudioStreamRandomizer_g3h64")
@@ -406,6 +433,10 @@ panning_strength = 2.35
 
 [node name="Minimize" type="AudioStreamPlayer" parent="AudioManager" unique_id=428758655]
 stream = SubResource("AudioStreamRandomizer_k8gkg")
+
+[node name="Swoosh" type="AudioStreamPlayer2D" parent="AudioManager" unique_id=234216059]
+position = Vector2(570, 24)
+stream = SubResource("AudioStreamRandomizer_5do6s")
 
 [node name="ScreenHints" type="CanvasLayer" parent="." unique_id=2049946003]
 layer = 2

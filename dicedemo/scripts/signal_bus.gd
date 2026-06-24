@@ -9,6 +9,8 @@ signal si_dice_rolled
 signal si_die_rolled
 signal si_dice_picked_up
 signal si_dissapointed
+signal si_dice_destroyed
+signal si_dice_survided
 signal si_player_button_was_pressed
 signal si_player_won
 signal si_player_lost

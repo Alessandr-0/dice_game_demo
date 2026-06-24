@@ -1,6 +1,37 @@
 [gd_scene format=3 uid="uid://dawa05osf3h4v"]
 
 [ext_resource type="Script" uid="uid://cls60pg4ariqm" path="res://scripts/dice_roll.gd" id="1_ejwej"]
+[ext_resource type="Shader" uid="uid://dywu33wnclnoi" path="res://assets/shaders/2d_burn_dissolve_with_direction.gdshader" id="2_ejwej"]
+
+[sub_resource type="Gradient" id="Gradient_yy2sr"]
+offsets = PackedFloat32Array(0.09134615, 0.8701923)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_jvp81"]
+noise_type = 2
+frequency = 0.0068
+fractal_type = 3
+fractal_octaves = 2
+fractal_lacunarity = 3.0
+fractal_gain = 1.1
+cellular_distance_function = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ejwej"]
+noise = SubResource("FastNoiseLite_jvp81")
+color_ramp = SubResource("Gradient_yy2sr")
+normalize = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jkm4e"]
+resource_local_to_scene = true
+shader = ExtResource("2_ejwej")
+shader_parameter/progress = -0.85
+shader_parameter/noiseForce = 0.415
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_ejwej")
+shader_parameter/burnColor = Color(1, 0.4195, 0.19, 1)
+shader_parameter/borderWidth = 0.065
+shader_parameter/direction = 180.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_v1w0g"]
+viewport_path = NodePath("SubViewport")
 
 [sub_resource type="Shader" id="Shader_3vpph"]
 code = "// Original from Snowlith, https://godotshaders.com/shader/analytical-die-dice-texture/
@@ -30,18 +61,33 @@ shader = SubResource("Shader_3vpph")
 shader_parameter/value = 6
 
 [node name="Dice" type="Control" unique_id=2027024641]
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -896.0
+offset_bottom = -384.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 script = ExtResource("1_ejwej")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1427321124]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=880931318]
+material = SubResource("ShaderMaterial_jkm4e")
+texture = SubResource("ViewportTexture_v1w0g")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=86105534]
+own_world_3d = true
+transparent_bg = true
+size = Vector2i(256, 256)
+
+[node name="Camera2D" type="Camera2D" parent="SubViewport" unique_id=2050017593]
+
+[node name="ColorRect" type="ColorRect" parent="SubViewport" unique_id=1427321124]
 material = SubResource("ShaderMaterial_y4uv0")
 custom_minimum_size = Vector2(128, 128)
-layout_mode = 0
 offset_right = 128.0
 offset_bottom = 128.0
 offset_transform_enabled = true

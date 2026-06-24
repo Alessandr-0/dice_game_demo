@@ -6,10 +6,11 @@ extends Node
 @export var die_rolling: AudioStreamPlayer2D
 @export var dice_pick_up: AudioStreamPlayer2D
 @export var dissapointed: AudioStreamPlayer2D
+@export var explosions: AudioStreamPlayer2D
 @export var exclamation: AudioStreamPlayer2D
 @export var enemy: AudioStreamPlayer2D
 @export var minimize: AudioStreamPlayer
-
+@export var swoosh: AudioStreamPlayer2D
 
 
 func _ready() -> void:
@@ -20,6 +21,8 @@ func _ready() -> void:
 	SignalBus.connect("si_die_rolled", _die_roller)
 	SignalBus.connect("si_dice_picked_up", _dice_picking_up)
 	SignalBus.connect("si_dissapointed", _dissapointed)
+	SignalBus.connect("si_dice_destroyed", _dice_destroyed)
+	SignalBus.connect("si_dice_survided", _dice_survived)
 	SignalBus.connect("si_player_won", _player_won)
 	SignalBus.connect("si_player_lost", _player_lost)
 
@@ -60,6 +63,14 @@ func _dice_picking_up() -> void:
 func _dissapointed() -> void:
 	if not dissapointed.playing:
 		dissapointed.play()
+
+func _dice_destroyed() -> void:
+	if not explosions.playing:
+		explosions.play()
+
+func _dice_survived() -> void:
+	if not swoosh.playing:
+		swoosh.play()
 
 func _player_won() -> void:
 	if not exclamation.playing:

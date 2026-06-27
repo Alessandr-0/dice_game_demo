@@ -1,36 +1,56 @@
 [gd_scene format=3 uid="uid://dawa05osf3h4v"]
 
 [ext_resource type="Script" uid="uid://cls60pg4ariqm" path="res://scripts/dice_roll.gd" id="1_ejwej"]
-[ext_resource type="Shader" uid="uid://dywu33wnclnoi" path="res://assets/shaders/2d_burn_dissolve_with_direction.gdshader" id="2_ejwej"]
 
-[sub_resource type="Gradient" id="Gradient_yy2sr"]
-offsets = PackedFloat32Array(0.09134615, 0.8701923)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_jvp81"]
-noise_type = 2
-frequency = 0.0068
-fractal_type = 3
-fractal_octaves = 2
-fractal_lacunarity = 3.0
-fractal_gain = 1.1
-cellular_distance_function = 1
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ejwej"]
-noise = SubResource("FastNoiseLite_jvp81")
-color_ramp = SubResource("Gradient_yy2sr")
-normalize = false
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jkm4e"]
+[sub_resource type="Shader" id="Shader_ejwej"]
 resource_local_to_scene = true
-shader = ExtResource("2_ejwej")
-shader_parameter/progress = -0.85
-shader_parameter/noiseForce = 0.415
-shader_parameter/noiseTexture = SubResource("NoiseTexture2D_ejwej")
-shader_parameter/burnColor = Color(1, 0.4195, 0.19, 1)
-shader_parameter/borderWidth = 0.065
-shader_parameter/direction = 180.0
+code = "// Original from enekoassets, https://godotshaders.com/shader/2d-burn-dissolve-with-direction-v-1-0/
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_v1w0g"]
+shader_type canvas_item;
+uniform float progress = 0.0;
+uniform float noiseForce = 0.2;
+uniform sampler2D noiseTexture;
+uniform vec4 burnColor: source_color;
+uniform float borderWidth;
+uniform float direction = 180.0f;
+
+vec2 degreesToPerpendicular(){
+	return vec2(cos(radians((direction))), -sin(radians(direction)));
+}
+void fragment(){
+	vec2 normUV = UV * 2.0 - 1.0;
+	COLOR.rgb = mix(COLOR.rgb, burnColor.rgb, float(dot(normUV, degreesToPerpendicular()) + (texture(noiseTexture, UV).r * noiseForce) < (progress + borderWidth)));
+	if(!(dot(normUV, degreesToPerpendicular()) + (texture(noiseTexture, UV).r * noiseForce) > progress)){
+		COLOR.a = 0.0;
+	}
+}"
+
+[sub_resource type="Gradient" id="Gradient_3vpph"]
+offsets = PackedFloat32Array(0.100961536, 0.875)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ejwej"]
+noise_type = 2
+seed = 13
+frequency = 0.03
+cellular_distance_function = 1
+cellular_jitter = 1.5
+cellular_return_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jvp81"]
+noise = SubResource("FastNoiseLite_ejwej")
+color_ramp = SubResource("Gradient_3vpph")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3vpph"]
+resource_local_to_scene = true
+shader = SubResource("Shader_ejwej")
+shader_parameter/progress = 0.365
+shader_parameter/noiseForce = 0.315
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_jvp81")
+shader_parameter/burnColor = Color(0.94, 0.16779, 0.065799996, 0.72156864)
+shader_parameter/borderWidth = 0.11
+shader_parameter/direction = -180.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ejwej"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="Shader" id="Shader_3vpph"]
@@ -60,23 +80,27 @@ resource_local_to_scene = true
 shader = SubResource("Shader_3vpph")
 shader_parameter/value = 6
 
-[node name="Dice" type="Control" unique_id=2027024641]
+[node name="Dice" type="Control" unique_id=2027024641 node_paths=PackedStringArray("color_rect", "sprite_2d")]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -896.0
-offset_bottom = -384.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
+pivot_offset = Vector2(5555, 2222)
+offset_transform_pivot = Vector2(1, 1)
+offset_transform_pivot_ratio = Vector2(2, 2)
+offset_transform_visual_only = false
+tooltip_text = "this is a normal
+six-sided dice"
 script = ExtResource("1_ejwej")
+color_rect = NodePath("SubViewport/ColorRect")
+sprite_2d = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=880931318]
-material = SubResource("ShaderMaterial_jkm4e")
-texture = SubResource("ViewportTexture_v1w0g")
+material = SubResource("ShaderMaterial_3vpph")
+texture = SubResource("ViewportTexture_ejwej")
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=86105534]
 own_world_3d = true

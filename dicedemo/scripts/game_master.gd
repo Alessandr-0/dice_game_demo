@@ -7,14 +7,16 @@ extends Node
 @export var dice_4: Control
 @export var dice_5: Control
 @export var dice_6: Control
-
+@export var background: MeshInstance2D
 @export var confetti: CanvasLayer
 @export var player_score_label: Label
 @export var enemy_score_label: Label
-
 @export var my_sound_delay: float = 0.3
 
 var dice_can_be_rolled: bool
+var background_scale: Vector2
+var background_scaling_factor: float = 0.9
+var tweeny: Tween
 var player_array: Array[int]
 var enemy_array: Array[int]
 var my_collected_array: Array
@@ -26,12 +28,14 @@ var enemy_total_score: int = 0
 func _ready() -> void:
 	confetti.visible = false
 	dice_can_be_rolled = true
+	background_scale = background.scale
 
 
 func _on_button_player_pressed() -> void:
 	if dice_can_be_rolled:
 		dice_can_be_rolled = false
-		print("button pressed")
+		if tweeny: tweeny.kill()
+		_background_scaling()
 		SignalBus.si_player_button_was_pressed.emit()
 		await get_tree().create_timer(0.3).timeout
 		SignalBus.si_dice_rolled.emit()
@@ -42,13 +46,14 @@ func _on_button_player_pressed() -> void:
 		await get_tree().create_timer(2.0).timeout
 		_comparing_values_and_scoring()
 
+
 ## TESTING: Use keyboard input only for playtesting and debugging
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("test_d"):
 		_fill_player_array()
 		_fill_enemy_array()
 	if Input.is_action_just_pressed("test_s"):
-		camera_effect(1.0, 2.0)
+		camera_effect(1.0, 1.2)
 		_comparing_values_and_scoring()
 	if Input.is_action_just_pressed("test_c"):
 		if not confetti.visible:
@@ -68,6 +73,7 @@ func _fill_player_array() -> Array:
 	_sort_player_array()
 	return player_array
 
+
 func _fill_enemy_array() -> Array:
 	enemy_array = [dice_4.dice_result,dice_5.dice_result,dice_6.dice_result]
 	print("unsorted E: ", enemy_array)
@@ -85,6 +91,7 @@ func _sort_player_array() -> Array:
 	dice_2.dice_result = p2
 	dice_3.dice_result = p3
 	return player_array
+
 
 func _sort_enemy_array() -> Array:
 	enemy_array.sort()
@@ -110,57 +117,60 @@ func _comparing_values_and_scoring():
 	if player_1 > enemy_1:
 		print("player 1 win")
 		player_total_wins += 1
-		SignalBus.si_dice_destroyed.emit()
+		dice_4.destroy_dice()
 	elif player_1 < enemy_1:
 		print("enemy 1 win")
 		enemy_total_wins += 1
-		SignalBus.si_dice_destroyed.emit()
+		dice_1.destroy_dice()
 	elif player_1 == enemy_1:
 		print("stalemate")
-		SignalBus.si_dice_survided.emit()
+		dice_1.destroy_dice()
+		dice_4.destroy_dice()
 	else:
-		print("WUT??? (1)")
+		print("WUT??? (round 1)")
 	await get_tree().create_timer(my_sound_delay).timeout
 	
 	if player_2 > enemy_2:
 		print("player 2 win")
 		player_total_wins += 1
-		SignalBus.si_dice_destroyed.emit()
+		dice_5.destroy_dice()
 	elif player_2 < enemy_2:
 		print("enemy 2 win")
 		enemy_total_wins += 1
-		SignalBus.si_dice_destroyed.emit()
+		dice_2.destroy_dice()
 	elif player_2 == enemy_2:
 		print("stalemate")
-		SignalBus.si_dice_survided.emit()
+		dice_2.destroy_dice()
+		dice_5.destroy_dice()
 	else:
-		print("wut??? (2)")
+		print("wut??? (round 2)")
 	await get_tree().create_timer(my_sound_delay).timeout
 	
 	if player_3 > enemy_3:
 		print("player 3 win")
 		player_total_wins += 1
-		SignalBus.si_dice_destroyed.emit()
+		dice_6.destroy_dice()
 	elif player_3 < enemy_3:
 		print("enemy 3 win")
 		enemy_total_wins += 1
-		SignalBus.si_dice_destroyed.emit()
+		dice_3.destroy_dice()
 	elif player_3 == enemy_3:
 		print("stalemate")
-		SignalBus.si_dice_survided.emit()
+		dice_3.destroy_dice()
+		dice_6.destroy_dice()
 	else:
-		print("wut??? (3)")
+		print("wut??? (round 3)")
 	await get_tree().create_timer(my_sound_delay).timeout
 	
-	print("player wins: ", player_total_wins)
-	print("enemy wins: ", enemy_total_wins)
+	print("player total wins: ", player_total_wins)
+	print("enemy total wins: ", enemy_total_wins)
 	if player_total_wins > enemy_total_wins:
 		_confetti()
 		SignalBus.si_player_won.emit()
 		player_total_score += 1
 		player_score_label.text = String.num_int64(player_total_score,10, false)
 	elif enemy_total_wins > player_total_wins:
-		camera_effect(3, 10)
+		camera_effect(3, 4)
 		SignalBus.si_player_lost.emit()
 		enemy_total_score += 1
 		enemy_score_label.text = String.num_int64(enemy_total_score,10, false)
@@ -169,7 +179,16 @@ func _comparing_values_and_scoring():
 		camera_effect(1.0,2.0)
 		print("nope")
 		pass
+	await get_tree().create_timer(0.3).timeout
+	SignalBus.si_dice_reconstruct.emit()
 	dice_can_be_rolled = true
+
+
+func _background_scaling():
+	tweeny = create_tween().set_ease(Tween.EASE_OUT)
+	tweeny.set_trans(Tween.TRANS_BOUNCE)
+	tweeny.tween_property(background, "scale", background_scale * background_scaling_factor, 0.3)
+	tweeny.tween_property(background, "scale", background_scale, 0.2)
 
 
 func _confetti() -> void:
@@ -178,6 +197,5 @@ func _confetti() -> void:
 	confetti.visible = false
 
 
-# INFO: For convenience made into dedicated function
 func camera_effect(shake_duration = null, shake_strength = null) -> void:
 	ScreenShaker2D.instance.shake(shake_duration, shake_strength)

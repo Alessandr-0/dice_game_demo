@@ -49,6 +49,82 @@ orientation = 2
 shader = ExtResource("4_kycxp")
 shader_parameter/time_factor = 0.5
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y4uv0"]
+shader = ExtResource("10_7pvxh")
+shader_parameter/speed = 120.0
+shader_parameter/sway_strength = 100.00000475
+shader_parameter/sway_speed = 1.4
+shader_parameter/spin_speed = 7.50000035625
+shader_parameter/piece_size = 8.000000284999999
+shader_parameter/aspect_ratio = 2.0
+shader_parameter/resolution = Vector2(1024, 512)
+shader_parameter/col0 = Color(1, 0.2, 0.2, 1)
+shader_parameter/col1 = Color(1, 0.75, 0.1, 1)
+shader_parameter/col2 = Color(0.1, 0.8, 0.3, 1)
+shader_parameter/col3 = Color(0.15, 0.55, 1, 1)
+shader_parameter/col4 = Color(0.85, 0.2, 1, 1)
+shader_parameter/col5 = Color(1, 0.4, 0.7, 1)
+shader_parameter/col6 = Color(0.1, 0.9, 0.95, 1)
+shader_parameter/col7 = Color(1, 1, 1, 1)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2is5d"]
+streams_count = 2
+stream_0/stream = ExtResource("12_jehah")
+stream_1/stream = ExtResource("13_e2w8j")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_v1w0g"]
+streams_count = 3
+stream_0/stream = ExtResource("12_ccljq")
+stream_1/stream = ExtResource("13_jehah")
+stream_2/stream = ExtResource("14_e2w8j")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_y4uv0"]
+streams_count = 3
+stream_0/stream = ExtResource("15_re66h")
+stream_1/stream = ExtResource("16_isfgf")
+stream_2/stream = ExtResource("17_ihmk7")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3htdx"]
+streams_count = 4
+stream_0/stream = ExtResource("18_phl1g")
+stream_1/stream = ExtResource("19_58tnd")
+stream_2/stream = ExtResource("20_e6w1q")
+stream_3/stream = ExtResource("21_jn22m")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_jkm4e"]
+streams_count = 2
+stream_0/stream = ExtResource("22_8yue3")
+stream_1/stream = ExtResource("23_agklt")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2xf8d"]
+streams_count = 5
+stream_0/stream = ExtResource("27_f0nuf")
+stream_1/stream = ExtResource("28_ixqlv")
+stream_2/stream = ExtResource("29_p6fp0")
+stream_3/stream = ExtResource("30_55oir")
+stream_4/stream = ExtResource("31_ltgni")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_g3h64"]
+streams_count = 2
+stream_0/stream = ExtResource("26_isfgf")
+stream_1/stream = ExtResource("27_ihmk7")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_isfgf"]
+streams_count = 4
+stream_0/stream = ExtResource("28_e6w1q")
+stream_1/stream = ExtResource("29_jn22m")
+stream_2/stream = ExtResource("30_8yue3")
+stream_3/stream = ExtResource("31_agklt")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_k8gkg"]
+streams_count = 1
+stream_0/stream = ExtResource("26_e2w8j")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_5do6s"]
+streams_count = 2
+stream_0/stream = ExtResource("39_p6fp0")
+stream_1/stream = ExtResource("40_55oir")
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_58tnd"]
 atlas = ExtResource("4_jh1ax")
 region = Rect2(0, 0, 164, 127)
@@ -169,82 +245,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_y4uv0"]
-shader = ExtResource("10_7pvxh")
-shader_parameter/speed = 120.0
-shader_parameter/sway_strength = 100.00000475
-shader_parameter/sway_speed = 1.4
-shader_parameter/spin_speed = 7.50000035625
-shader_parameter/piece_size = 8.000000284999999
-shader_parameter/aspect_ratio = 2.0
-shader_parameter/resolution = Vector2(1024, 512)
-shader_parameter/col0 = Color(1, 0.2, 0.2, 1)
-shader_parameter/col1 = Color(1, 0.75, 0.1, 1)
-shader_parameter/col2 = Color(0.1, 0.8, 0.3, 1)
-shader_parameter/col3 = Color(0.15, 0.55, 1, 1)
-shader_parameter/col4 = Color(0.85, 0.2, 1, 1)
-shader_parameter/col5 = Color(1, 0.4, 0.7, 1)
-shader_parameter/col6 = Color(0.1, 0.9, 0.95, 1)
-shader_parameter/col7 = Color(1, 1, 1, 1)
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2is5d"]
-streams_count = 2
-stream_0/stream = ExtResource("12_jehah")
-stream_1/stream = ExtResource("13_e2w8j")
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_v1w0g"]
-streams_count = 3
-stream_0/stream = ExtResource("12_ccljq")
-stream_1/stream = ExtResource("13_jehah")
-stream_2/stream = ExtResource("14_e2w8j")
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_y4uv0"]
-streams_count = 3
-stream_0/stream = ExtResource("15_re66h")
-stream_1/stream = ExtResource("16_isfgf")
-stream_2/stream = ExtResource("17_ihmk7")
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3htdx"]
-streams_count = 4
-stream_0/stream = ExtResource("18_phl1g")
-stream_1/stream = ExtResource("19_58tnd")
-stream_2/stream = ExtResource("20_e6w1q")
-stream_3/stream = ExtResource("21_jn22m")
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_jkm4e"]
-streams_count = 2
-stream_0/stream = ExtResource("22_8yue3")
-stream_1/stream = ExtResource("23_agklt")
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2xf8d"]
-streams_count = 5
-stream_0/stream = ExtResource("27_f0nuf")
-stream_1/stream = ExtResource("28_ixqlv")
-stream_2/stream = ExtResource("29_p6fp0")
-stream_3/stream = ExtResource("30_55oir")
-stream_4/stream = ExtResource("31_ltgni")
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_g3h64"]
-streams_count = 2
-stream_0/stream = ExtResource("26_isfgf")
-stream_1/stream = ExtResource("27_ihmk7")
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_isfgf"]
-streams_count = 4
-stream_0/stream = ExtResource("28_e6w1q")
-stream_1/stream = ExtResource("29_jn22m")
-stream_2/stream = ExtResource("30_8yue3")
-stream_3/stream = ExtResource("31_agklt")
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_k8gkg"]
-streams_count = 1
-stream_0/stream = ExtResource("26_e2w8j")
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_5do6s"]
-streams_count = 2
-stream_0/stream = ExtResource("39_p6fp0")
-stream_1/stream = ExtResource("40_55oir")
-
 [node name="Root" type="Control" unique_id=1285987883]
 layout_mode = 3
 anchors_preset = 15
@@ -254,9 +254,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3hfy5")
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=174149241]
-position = Vector2(539.5, 262)
-scale = Vector2(5.9850006, 3.1099997)
+[node name="Background" type="MeshInstance2D" parent="." unique_id=174149241]
+position = Vector2(500.0001, 254.99998)
+scale = Vector2(6.3800006, 3.5500002)
 mesh = SubResource("PlaneMesh_y4uv0")
 texture = ExtResource("1_lrqlo")
 
@@ -276,13 +276,13 @@ theme_override_constants/separation = 100
 layout_mode = 2
 theme_override_constants/separation = 60
 
-[node name="dice1" parent="CenterContainer/VBoxContainer/Row_1" unique_id=2027024641 instance=ExtResource("1_twpsu")]
+[node name="Dice1" parent="CenterContainer/VBoxContainer/Row_1" unique_id=2027024641 instance=ExtResource("1_twpsu")]
 layout_mode = 2
 
-[node name="dice2" parent="CenterContainer/VBoxContainer/Row_1" unique_id=622073147 instance=ExtResource("1_twpsu")]
+[node name="Dice2" parent="CenterContainer/VBoxContainer/Row_1" unique_id=1537584439 instance=ExtResource("1_twpsu")]
 layout_mode = 2
 
-[node name="dice3" parent="CenterContainer/VBoxContainer/Row_1" unique_id=1588113440 instance=ExtResource("1_twpsu")]
+[node name="Dice3" parent="CenterContainer/VBoxContainer/Row_1" unique_id=132718035 instance=ExtResource("1_twpsu")]
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/Row_1" unique_id=1801490196]
@@ -303,13 +303,13 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_constants/separation = 60
 
-[node name="dice4" parent="CenterContainer/VBoxContainer/Row_2" unique_id=1215050839 instance=ExtResource("1_twpsu")]
+[node name="Dice4" parent="CenterContainer/VBoxContainer/Row_2" unique_id=1254870990 instance=ExtResource("1_twpsu")]
 layout_mode = 2
 
-[node name="dice5" parent="CenterContainer/VBoxContainer/Row_2" unique_id=656347977 instance=ExtResource("1_twpsu")]
+[node name="Dice5" parent="CenterContainer/VBoxContainer/Row_2" unique_id=1499101247 instance=ExtResource("1_twpsu")]
 layout_mode = 2
 
-[node name="dice6" parent="CenterContainer/VBoxContainer/Row_2" unique_id=306961036 instance=ExtResource("1_twpsu")]
+[node name="Dice6" parent="CenterContainer/VBoxContainer/Row_2" unique_id=489557354 instance=ExtResource("1_twpsu")]
 layout_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="CenterContainer/VBoxContainer/Row_2" unique_id=1002493943]
@@ -343,20 +343,15 @@ layout_mode = 2
 text = "enemy"
 horizontal_alignment = 1
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CenterContainer/VBoxContainer/Row_2/PanelContainer/VBoxContainer" unique_id=1470528217]
-position = Vector2(396, 75)
-scale = Vector2(0.75609744, 0.94488186)
-sprite_frames = SubResource("SpriteFrames_jkm4e")
-autoplay = "default"
-
-[node name="GameMaster" type="Node" parent="." unique_id=674692258 node_paths=PackedStringArray("dice_1", "dice_2", "dice_3", "dice_4", "dice_5", "dice_6", "confetti", "player_score_label", "enemy_score_label")]
+[node name="GameMaster" type="Node" parent="." unique_id=674692258 node_paths=PackedStringArray("dice_1", "dice_2", "dice_3", "dice_4", "dice_5", "dice_6", "background", "confetti", "player_score_label", "enemy_score_label")]
 script = ExtResource("2_sqa0i")
-dice_1 = NodePath("../CenterContainer/VBoxContainer/Row_1/dice1")
-dice_2 = NodePath("../CenterContainer/VBoxContainer/Row_1/dice2")
-dice_3 = NodePath("../CenterContainer/VBoxContainer/Row_1/dice3")
-dice_4 = NodePath("../CenterContainer/VBoxContainer/Row_2/dice4")
-dice_5 = NodePath("../CenterContainer/VBoxContainer/Row_2/dice5")
-dice_6 = NodePath("../CenterContainer/VBoxContainer/Row_2/dice6")
+dice_1 = NodePath("../CenterContainer/VBoxContainer/Row_1/Dice1")
+dice_2 = NodePath("../CenterContainer/VBoxContainer/Row_1/Dice2")
+dice_3 = NodePath("../CenterContainer/VBoxContainer/Row_1/Dice3")
+dice_4 = NodePath("../CenterContainer/VBoxContainer/Row_2/Dice4")
+dice_5 = NodePath("../CenterContainer/VBoxContainer/Row_2/Dice5")
+dice_6 = NodePath("../CenterContainer/VBoxContainer/Row_2/Dice6")
+background = NodePath("../Background")
 confetti = NodePath("../Confetti")
 player_score_label = NodePath("../ScreenHints/PlayerScore")
 enemy_score_label = NodePath("../ScreenHints/EnemyScore")
@@ -465,5 +460,12 @@ offset_right = 986.0
 offset_bottom = 433.0
 theme_override_font_sizes/font_size = 88
 text = "0"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1470528217]
+visible = false
+position = Vector2(1142, 379)
+scale = Vector2(0.75609744, 0.94488186)
+sprite_frames = SubResource("SpriteFrames_jkm4e")
+autoplay = "default"
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Row_1/VBoxContainer/ButtonPlayer" to="GameMaster" method="_on_button_player_pressed"]

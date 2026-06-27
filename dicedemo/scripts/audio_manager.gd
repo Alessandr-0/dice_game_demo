@@ -22,7 +22,6 @@ func _ready() -> void:
 	SignalBus.connect("si_dice_picked_up", _dice_picking_up)
 	SignalBus.connect("si_dissapointed", _dissapointed)
 	SignalBus.connect("si_dice_destroyed", _dice_destroyed)
-	SignalBus.connect("si_dice_survided", _dice_survived)
 	SignalBus.connect("si_player_won", _player_won)
 	SignalBus.connect("si_player_lost", _player_lost)
 
@@ -67,10 +66,6 @@ func _dissapointed() -> void:
 func _dice_destroyed() -> void:
 	if not explosions.playing:
 		explosions.play()
-
-func _dice_survived() -> void:
-	if not swoosh.playing:
-		swoosh.play()
 
 func _player_won() -> void:
 	if not exclamation.playing:

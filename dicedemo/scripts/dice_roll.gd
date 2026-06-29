@@ -19,8 +19,8 @@ var tweeny: Tween
 
 func _ready() -> void:
 	dice_mat = color_rect.material as ShaderMaterial
-	fire_mat = sprite_2d.material as Material
-	fire_mat = fire_mat.duplicate()
+	#fire_mat = sprite_2d.material as Material
+	#fire_mat = fire_mat.duplicate()
 	fire_mat = sprite_2d.material as ShaderMaterial
 	fire_progress = -2.0
 	dice_scale = self.scale

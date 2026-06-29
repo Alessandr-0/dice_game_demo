@@ -13,6 +13,7 @@ extends Node
 @export var enemy_score_label: Label
 @export var my_sound_delay: float = 0.3
 
+
 var dice_can_be_rolled: bool
 var background_scale: Vector2
 var background_scaling_factor: float = 0.9

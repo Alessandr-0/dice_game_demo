@@ -1,0 +1,124 @@
+[gd_scene format=3 uid="uid://jtidwuf6l5wy"]
+
+[ext_resource type="Texture2D" uid="uid://dwdtvftxxsfga" path="res://icon.svg" id="1_36k0w"]
+
+[node name="Control" type="Control" unique_id=1063855101]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1458625494]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1425427884]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1785860870]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=625631795]
+layout_mode = 2
+text = "button"
+
+[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1649666638]
+layout_mode = 2
+text = "button"
+
+[node name="Button3" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1809409850]
+layout_mode = 2
+text = "button"
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer" unique_id=157890187]
+layout_mode = 2
+size_flags_horizontal = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(0.945, 0.945)
+theme_override_constants/h_separation = 7
+theme_override_constants/v_separation = 7
+columns = 4
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=1656738736]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(0.8, 0.8)
+icon = ExtResource("1_36k0w")
+
+[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=1226104638]
+layout_mode = 2
+icon = ExtResource("1_36k0w")
+
+[node name="Button3" type="Button" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=1153562556]
+layout_mode = 2
+icon = ExtResource("1_36k0w")
+
+[node name="Button4" type="Button" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=556854618]
+layout_mode = 2
+icon = ExtResource("1_36k0w")
+
+[node name="Button5" type="Button" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=1842347640]
+layout_mode = 2
+icon = ExtResource("1_36k0w")
+
+[node name="Button6" type="Button" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=1976797384]
+layout_mode = 2
+icon = ExtResource("1_36k0w")
+
+[node name="Button7" type="Button" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=1082667371]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(0.8, 0.8)
+offset_transform_rotation = 0.25307274
+icon = ExtResource("1_36k0w")
+
+[node name="Button8" type="Button" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=1624760999]
+layout_mode = 2
+icon = ExtResource("1_36k0w")
+
+[node name="Button9" type="Button" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=927398187]
+layout_mode = 2
+icon = ExtResource("1_36k0w")
+
+[node name="Button10" type="Button" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=362768139]
+layout_mode = 2
+icon = ExtResource("1_36k0w")
+
+[node name="Button11" type="Button" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=1012172811]
+layout_mode = 2
+icon = ExtResource("1_36k0w")
+
+[node name="Button12" type="Button" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=72533106]
+layout_mode = 2
+icon = ExtResource("1_36k0w")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=748618017]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=298130961]
+layout_mode = 2
+text = "button"
+
+[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1979332917]
+layout_mode = 2
+text = "button"
+
+[node name="Button3" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1974176459]
+layout_mode = 2
+text = "button"
+
+[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1312874308]
+layout_mode = 2

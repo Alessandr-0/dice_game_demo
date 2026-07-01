@@ -12,6 +12,8 @@ extends Node
 @export var player_score_label: Label
 @export var enemy_score_label: Label
 @export var my_sound_delay: float = 0.3
+@export var skeleton_arm_2d: Node2D
+
 
 
 var dice_can_be_rolled: bool
@@ -41,6 +43,7 @@ func _on_button_player_pressed() -> void:
 		await get_tree().create_timer(0.3).timeout
 		SignalBus.si_dice_rolled.emit()
 		await get_tree().create_timer(2.0).timeout
+		_move_arm()
 		SignalBus.si_dice_picked_up.emit()
 		_fill_player_array()
 		_fill_enemy_array()
@@ -51,16 +54,18 @@ func _on_button_player_pressed() -> void:
 ## TESTING: Use keyboard input only for playtesting and debugging
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("test_d"):
-		_fill_player_array()
-		_fill_enemy_array()
+		if tweeny: tweeny.kill()
+		_move_arm()
 	if Input.is_action_just_pressed("test_s"):
-		camera_effect(1.0, 1.2)
-		_comparing_values_and_scoring()
+		# check if a dialog is already running
+		if Dialogic.current_timeline != null:
+			return
+		if _event is InputEventKey and _event.keycode == KEY_ENTER and _event.pressed:
+			Dialogic.start('chapterA')
+			get_viewport().set_input_as_handled()
+
 	if Input.is_action_just_pressed("test_c"):
-		if not confetti.visible:
-			_confetti()
-		else:
-			pass
+		pass
 	if Input.is_action_just_pressed("ui_cancel"):
 		SignalBus.si_game_quit.emit()
 		await get_tree().create_timer(0.5).timeout
@@ -197,6 +202,15 @@ func _confetti() -> void:
 	await get_tree().create_timer(1.1).timeout
 	confetti.visible = false
 
+
+func _move_arm() -> void:
+	#await get_tree().create_timer(0.05).timeout
+	tweeny = create_tween().set_ease(Tween.EASE_OUT)
+	tweeny.set_trans(Tween.TRANS_CUBIC)
+	tweeny.tween_property(skeleton_arm_2d, "position", Vector2(1050.0, 180.0), 0.6)
+	tweeny.tween_property(skeleton_arm_2d, "rotation_degrees", -45.0 , 0.5)
+	tweeny.tween_property(skeleton_arm_2d, "position", Vector2(2000.0, 175.0), 0.4)
+	tweeny.tween_property(skeleton_arm_2d, "rotation", 0.0, 0.1)
 
 func camera_effect(shake_duration = null, shake_strength = null) -> void:
 	ScreenShaker2D.instance.shake(shake_duration, shake_strength)

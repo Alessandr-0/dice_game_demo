@@ -40,6 +40,7 @@
 [ext_resource type="AudioStream" uid="uid://c2h4acciwpda2" path="res://assets/sounds/explosions/EXPLOSION_Short_09_mono.wav" id="31_ltgni"]
 [ext_resource type="AudioStream" uid="uid://cn4vyjrnu2dek" path="res://assets/sounds/swoosh/WHOOSH_Quick_Darker_mono.wav" id="39_p6fp0"]
 [ext_resource type="AudioStream" uid="uid://dlg3o1f6m87tb" path="res://assets/sounds/swoosh/WHOOSH_Quick_mono.wav" id="40_55oir"]
+[ext_resource type="PackedScene" uid="uid://dqq41wl2pqnqo" path="res://scenes/skeleton_arm_2d.tscn" id="41_55oir"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_y4uv0"]
 size = Vector2(200, 200)
@@ -343,7 +344,7 @@ layout_mode = 2
 text = "enemy"
 horizontal_alignment = 1
 
-[node name="GameMaster" type="Node" parent="." unique_id=674692258 node_paths=PackedStringArray("dice_1", "dice_2", "dice_3", "dice_4", "dice_5", "dice_6", "background", "confetti", "player_score_label", "enemy_score_label")]
+[node name="GameMaster" type="Node" parent="." unique_id=674692258 node_paths=PackedStringArray("dice_1", "dice_2", "dice_3", "dice_4", "dice_5", "dice_6", "background", "confetti", "player_score_label", "enemy_score_label", "skeleton_arm_2d")]
 script = ExtResource("2_sqa0i")
 dice_1 = NodePath("../CenterContainer/VBoxContainer/Row_1/Dice1")
 dice_2 = NodePath("../CenterContainer/VBoxContainer/Row_1/Dice2")
@@ -356,6 +357,7 @@ confetti = NodePath("../Confetti")
 player_score_label = NodePath("../ScreenHints/PlayerScore")
 enemy_score_label = NodePath("../ScreenHints/EnemyScore")
 my_sound_delay = 1.2
+skeleton_arm_2d = NodePath("../SkeletonArm2D")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1008272714]
 offset = Vector2(512, 256)
@@ -440,8 +442,7 @@ layer = 2
 offset_right = 40.0
 offset_bottom = 23.0
 text = "1-6: dice sounds
-C: Confetti
-S: Shake Camera
+D: move arm
 Esc: Quit
 "
 
@@ -467,5 +468,9 @@ position = Vector2(1142, 379)
 scale = Vector2(0.75609744, 0.94488186)
 sprite_frames = SubResource("SpriteFrames_jkm4e")
 autoplay = "default"
+
+[node name="SkeletonArm2D" parent="." unique_id=2068039827 instance=ExtResource("41_55oir")]
+position = Vector2(2000, 175)
+scale = Vector2(2, 2)
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Row_1/VBoxContainer/ButtonPlayer" to="GameMaster" method="_on_button_player_pressed"]
